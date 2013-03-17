@@ -2,8 +2,9 @@ require 'sinatra'
 require 'slim'
 require 'sass'
 
+set :port, 80
+
 class DudaDornellesCom < Sinatra::Base
-  set :port, 80
 
   get '/' do
     slim :index
