@@ -1,7 +1,3 @@
-doctype HTML
-html
-  head
-    title dudadornelles.com
-  body
-    h1 Duda Dornelles
-
+- @posts.each do |post|
+  == slim post.to_sym
+  hr
