@@ -22,4 +22,9 @@ class DudaDornellesCom < Sinatra::Base
     slim :index
   end
 
+  get '/posts/:post' do |post|
+    @post = post
+    slim :post
+  end
+
 end
