@@ -1,17 +1,60 @@
 h2 Building this blog
 article
-  h3 The basic stack
-  ul
-    li - rvm/ruby 1.9.3
-    li - sinatra
-    li - git for deployment
-  h3 RVM
+  | The stack is: RVM and ruby 1.9.3, sinatra and git
+  h3#section_rvm RVM
   a href="https://rvm.io" RVM 
   | is a tool that helps you managing your ruby versions (like rbenv). What I found very interesting is the fact that you can create 'gemsets' and keep your ruby apps only minding their own business - being able to use different gem versions with no major problems. RVM lets you create a file called '.rvmrc' inside a folder so that everytime you enter that folder an rvm command will run. My .rvmrc file looks like:
-  br
-  code
-    | rvm use 1.9.3@dudadornelles.com --create
-  br
+  div
+    pre 
+      code.bash
+        | rvm use 1.9.3@dudadornelles.com --create
   | That creates a new gemset called 'dudadornelles.com' or uses it if already created. 
-  h3 Sinatra
-
+  h3#section_sinatra Sinatra
+  | The sinatra setup is somewhat easy. I'm using 
+  a href='www.slim-lang.org' slim 
+  | as my template engine and 
+  a href='www.sass-lang.com' sass 
+  | as my css engine. Slim works out of the box in sinatra but for sass there is a small setup. Basically, you'll need a controller to fullfill requests to css files and call sass to process those files. The simplest way to get it to work is to put your sass files inside your views directory - e.g., views/css/myfile.css. So then given you have a stylesheet entry like:
+  div
+    pre
+      code.ruby
+        | link rel="stylesheet" type="text/css" href="/home.css"
+  | You should have something like this in your controllers:
+  div
+    pre
+      code.ruby
+        | get '/:filename.css' do |filename| 
+        br
+        | &nbsp;&nbsp;sass "css/\#{filename}".to_sym
+        br
+        | end
+  | There is no database. All the data that gets persisted is the filename for a blog post - for instance "17-03-2012-building-this-blog.slim". Every request to '/posts/:filename' simply renders the slim file. For the homepage, I load all the posts in to a model object, order by date and use the 5 newest entries.
+  h3#section_git Git
+  | There are 3 repos:
+  div
+    ul
+      li 
+        | - bare remote repo: Lives in the server and is the central one - the one that code gets pushed to and the one where the git post-receive hook is set for deployment.
+      li 
+        | - remote clone: The bare repo doesn't have a working tree, so we need a proper clone of it in the server to run the application from.
+      li 
+        | - local clone: It is the actual working copy and the only place we will be writing code.
+  | The flow is: create the bare repo in the server -> clone it in the server -> clone it in your local -> push code from your local to the bare repo. The moment you push code, you should have a git post-receive hook that updates the repo clone in the server and starts your application. The hook lives in $BARE_REPO_HOME/hooks/post-receive and must be an executable bash file. Mine looks like this:
+  pre
+    code.bash
+      | #!/bin/bash --login
+      br
+      | killall ruby unicorn
+      br
+      | cd  $HOME/live-dudadornelles.com 
+      br
+      | unset GIT_DIR
+      br
+      | git pull
+      br
+      | bundle install
+      br
+      | unicorn -D -E prod
+      br
+      | exec git-update-server-info
+  
