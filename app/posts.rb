@@ -15,8 +15,8 @@ class Posts
 
     def init_posts
       Dir[File.join(ROOT_FOLDER, "views/posts/**")].inject([]) do |posts, post|
-        posts << post.scan(/\/(posts\/.*?)\.slim/)
-      end.flatten
+        posts << Post.new(post.scan(/\/(posts\/.*?)\.slim/).flatten.first)
+      end
     end
   end
 end

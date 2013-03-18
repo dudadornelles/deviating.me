@@ -1,11 +1,38 @@
-html
-  font-family: Helvetica
+$background: #4B1813
+$header: #7B4A45
+$font: #E0C4C1
+$link_font: #593F3D
+$titles: #E0A8A2
 
-.header
+html
+  *
+    margin: 0px
+    padding: 0px
+
+body
+  background-color: $background
+  color: $font
+  font-family: Helvetica
+  h1,h2,h3,h4,h5
+    color: $titles
   a
     text-decoration: none
-    color: black
+    color: $link_font
+
+.header
+  padding: 10px 0px 20px 20px
   li
     list-style: none
     display: inline-block
     margin-right: 10px
+
+.post
+  padding: 10px 0px 20px 20px
+  h2
+    margin-bottom: 15px
+  article
+    padding-left: 15px
+
+.footer
+  ul
+    padding: 10px 0px 20px 20px

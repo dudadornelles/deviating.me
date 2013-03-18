@@ -1,3 +1,4 @@
 - @posts.each do |post|
-  == slim post.to_sym
+  .post
+    == slim post.link.to_sym
   hr
