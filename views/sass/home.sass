@@ -20,10 +20,7 @@ $titles: gray
   background-color: $header
   margin: 10px 0px 10px 20px
   padding: 10px 10px 10px 15px
-  @include round_corners(5px)
-  a
-    color: white
-    text-decoration: underline
+  @include round_corners(2px)
 
 html
   *
@@ -32,18 +29,25 @@ html
 
 body
   background-color: $background
+  font-size: 14px
   color: $font
-  font-family: 'Sintony'
-  h1,h2,h3,h4,h5
+  font-family: 'Sintony', sans-serif
+  h2,h3,h4,h5
     color: $titles
+  h2
+    font-size: 18px
+  h3
+    font-size: 16px
   a
     text-decoration: none
     color: $link_font
 
 .header
+  h1
+    font-size: 20px
   a
     color: white
-  padding: 10px 0px 20px 20px
+  padding: 10px 0px 5px 20px
   background: $header
   color: white
 
@@ -72,9 +76,3 @@ body
     color: $font
     margin-left: 20px
 
-.footer
-  @include base_block
-  ul
-    padding: 10px 0px 20px 0px
-    li
-      list-style: none
