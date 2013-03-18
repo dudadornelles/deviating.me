@@ -1,0 +1,17 @@
+h2 Building this blog
+article
+  h3 The basic stack
+  ul
+    li - rvm/ruby 1.9.3
+    li - sinatra
+    li - git for deployment
+  h3 RVM
+  a href="https://rvm.io" RVM 
+  | is a tool that helps you managing your ruby versions (like rbenv). What I found very interesting is the fact that you can create 'gemsets' and keep your ruby apps only minding their own business - being able to use different gem versions with no major problems. RVM lets you create a file called '.rvmrc' inside a folder so that everytime you enter that folder an rvm command will run. My .rvmrc file looks like:
+  br
+  code
+    | rvm use 1.9.3@dudadornelles.com --create
+  br
+  | That creates a new gemset called 'dudadornelles.com' or uses it if already created. 
+  h3 Sinatra
+

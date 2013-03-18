@@ -1,8 +1,14 @@
 $background: #4B1813
 $header: #7B4A45
 $font: #E0C4C1
-$link_font: #593F3D
+$link_font: black
 $titles: #E0A8A2
+
+@mixin base_block
+  display: inline-block
+  background-color: $header
+  margin: 10px 0px 10px 20px
+  padding: 5px 10px 10px 5px
 
 html
   *
@@ -23,15 +29,22 @@ body
   padding: 10px 0px 20px 20px
   li
     list-style: none
-    display: inline-block
     margin-right: 10px
 
 .post
   padding: 10px 0px 20px 20px
   h2
     margin-bottom: 15px
+  h3
+    margin: 10px 0px 10px 0px
   article
     padding-left: 15px
+    ul
+      @include base_block
+      li
+        list-style: none
+  code
+    @include base_block
 
 .footer
   ul
