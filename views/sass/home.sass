@@ -1,8 +1,8 @@
-$background: #4B1813
-$header: #7B4A45
-$font: #E0C4C1
-$link_font: black
-$titles: #E0A8A2
+$background: white
+$font: black
+$link_font: gray
+$header: gray
+$titles: gray 
 
 @mixin base_block
   display: inline-block
@@ -26,11 +26,11 @@ body
     color: $link_font
 
 .header
+  a
+    color: white
   padding: 10px 0px 20px 20px
-  li
-    list-style: none
-    margin-right: 10px
-    float: left
+  background: $header
+  color: white
 
 .post
   padding: 10px 0px 20px 20px

@@ -24,10 +24,8 @@ article
     pre
       code.ruby
         | get '/:filename.css' do |filename| 
-        br
-        | &nbsp;&nbsp;sass "css/\#{filename}".to_sym
-        br
-        | end
+            sass "css/\#{filename}".to_sym
+          end
   | There is no database. All the data that gets persisted is the filename for a blog post - for instance "17-03-2012-building-this-blog.slim". Every request to '/posts/:filename' simply renders the slim file. For the homepage, I load all the posts in to a model object, order by date and use the 5 newest entries.
   h3#section_git Git
   | There are 3 repos:
@@ -43,18 +41,11 @@ article
   pre
     code.bash
       | #!/bin/bash --login
-      br
-      | killall ruby unicorn
-      br
-      | cd  $HOME/live-dudadornelles.com 
-      br
-      | unset GIT_DIR
-      br
-      | git pull
-      br
-      | bundle install
-      br
-      | unicorn -D -E prod
-      br
-      | exec git-update-server-info
+        killall ruby unicorn
+        cd  $HOME/live-dudadornelles.com 
+        unset GIT_DIR
+        git pull
+        bundle install
+        unicorn -D -E prod
+        exec git-update-server-info
   
