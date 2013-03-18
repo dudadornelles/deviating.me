@@ -4,11 +4,26 @@ $link_font: gray
 $header: gray
 $titles: gray 
 
+@mixin round-corners($amount)
+  border-radius: $amount
+  -moz-border-radius: $amount
+  -webkit-border-radius: $amount
+
+@font-face 
+  font-family: 'Sintony'
+  font-style: normal
+  font-weight: 400
+  src: local('Sintony'), url(http://themes.googleusercontent.com/static/fonts/sintony/v1/cu1c4tOdDXpghDFFDdv7MgLUuEpTyoUstqEm5AMlJo4.woff) format('woff')
+
 @mixin base_block
   display: inline-block
   background-color: $header
   margin: 10px 0px 10px 20px
-  padding: 5px 10px 10px 5px
+  padding: 10px 10px 10px 15px
+  @include round_corners(5px)
+  a
+    color: white
+    text-decoration: underline
 
 html
   *
@@ -18,7 +33,7 @@ html
 body
   background-color: $background
   color: $font
-  font-family: Helvetica
+  font-family: 'Sintony'
   h1,h2,h3,h4,h5
     color: $titles
   a
@@ -31,6 +46,9 @@ body
   padding: 10px 0px 20px 20px
   background: $header
   color: white
+
+.content
+  padding: 0px 20px 0px 0px 
 
 .post
   padding: 10px 0px 20px 20px
@@ -55,5 +73,8 @@ body
     margin-left: 20px
 
 .footer
+  @include base_block
   ul
-    padding: 10px 0px 20px 20px
+    padding: 10px 0px 20px 0px
+    li
+      list-style: none
