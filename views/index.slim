@@ -1,4 +1,4 @@
 - @posts.each do |post|
   .post
-    == slim "posts/#{post.permalink}".to_sym
+    == slim :render_post, :locals => { :post => post }
   hr

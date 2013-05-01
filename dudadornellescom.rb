@@ -22,8 +22,8 @@ class DudaDornellesCom < Sinatra::Base
     slim :index
   end
 
-  get '/posts/:post' do |post|
-    @post = post
+  get '/posts/:permalink' do |permalink|
+    @post = Posts.find_by_permalink(permalink)
     slim :post
   end
 

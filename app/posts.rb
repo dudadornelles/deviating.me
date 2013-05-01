@@ -10,6 +10,10 @@ class Posts
       posts.reverse[0..n]
     end
 
+    def find_by_permalink permalink
+      posts.find { |e| e.permalink == permalink }
+    end
+
     private
     def posts
       @posts ||= init_posts
