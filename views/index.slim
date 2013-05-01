@@ -1,4 +1,4 @@
 - @posts.each do |post|
   .post
-    == slim post.link.to_sym
+    == slim post.link.to_sym, :locals => { :post_link => post.link.to_sym, :homepage => true }
   hr
