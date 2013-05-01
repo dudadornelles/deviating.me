@@ -1,3 +1,5 @@
+require 'json'
+
 class Posts
   class << self
     def all
@@ -14,9 +16,12 @@ class Posts
     end
 
     def init_posts
-      Dir[File.join(ROOT_FOLDER, "views/posts/**")].inject([]) do |posts, post|
-        posts << Post.new(post.scan(/\/(posts\/.*?)\.slim/).flatten.first)
-      end
+      [
+        { :name => 'Building this blog',
+          :date => '17/03/2012',
+          :permalink => '17-03-2012-building-this-blog'
+        } 
+      ].inject([]) { |posts, post| posts << Post.new(post) }
     end
   end
 end
