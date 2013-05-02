@@ -1,4 +1,5 @@
 - @posts.each do |post|
-  .post
-    == slim :render_post, :locals => { :post => post }
-  hr
+  == if post.live
+    .post
+      == slim :render_post, :locals => { :post => post }
+    hr
