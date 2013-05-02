@@ -4,13 +4,10 @@ html
     title dudadornelles.com
 
     link rel="stylesheet" type="text/css" href="/home.css"
+  == slim :header
   body
-
-    == slim :header
-
     .content
       == yield
-
-    == slim :footer
+      == slim :footer
 
 

@@ -21,10 +21,16 @@ class Posts
 
     def init_posts
       [
-        { :name => 'Building this blog',
-          :date => '17/03/2012',
-          :permalink => '17-03-2012-building-this-blog'
-        } 
+        { 
+          :name => 'Building this Blog',
+          :date => '17/03/2013',
+          :permalink => '17-03-2013-building-this-blog'
+        }, 
+        {
+          :name => "Five Whys",
+          :date => '1/05/2013',
+          :permalink => '1-05-2013-five-whys'
+        }
       ].inject([]) { |posts, post| posts << Post.new(post) }
     end
   end
