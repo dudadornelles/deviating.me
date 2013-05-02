@@ -9,11 +9,13 @@ article
   p
     | I'm an agile consultant, and I have been taught that, when we face a problem, we should ask 5 whys. The build is always broken- why? Becuase the tests are flaky- why? Because the tests are not well written- why? Because they are testing the wrong things in the wrong testing level- why? Because the team don't know about the test pyramid- why? Because the hiring process isn't as good as it could be.
   p
-    | OK, we have the root cause. Now what do we do with it? Let's go talk to whoever is on charge of hiring decisions and tell them to raise the bar. Truth is, chances of that working are very small. You don't know this person- your influence over them won't be enough. You could create some friction there too- "Are you saying are people are bad?".
+    | OK, we have the root cause. Now what do we do with it? Let's go talk to whoever is on charge of hiring decisions and tell them to raise the bar. Truth is, this approach will hardly work. You don't know this person- your influence over them won't be enough. You could create some friction there too- "Are you saying our people are bad?".
   p
-    | The chances of solving a problem your client has, you being the consultant, will get smaller as you approach the root cause. The root cause is bigger than you. The root cause is, most of the times, 
+    | As a consultant, the chances of solving a problem your client has will get smaller as you try to fight the root cause. The root cause is bigger than you. The root cause is, most of the times, 
     em someone.
   p
-    | It is people, the immutable variable of a consultancy gig. That you won't fix.
+    | It is people, the immutable variable of a consultancy gig. You can't fix that.
   p
-    | You have to break the chains of "whys". You have to find a point of inflection where you can, with cirurgical skills, propose/implement a solution in one of the why levels that will then bubble up and solve your initial problem.
+    | You have to break the chains of "whys". You have to find a point of inflection where you can, with cirurgical skills, propose/implement a solution in one of the why levels that will then bubble up and solve your initial problem. The build is broken because the tests are flaky? Maybe try a quarantine CI where you can isolate these tests and see why they are flaky. Maybe that won't help though, so we go to the next "why level": why were those tests flaky in the first place? Because they were testing the wrong thing in the wrong level. Say they were browser tests checking on validation rules for the user registration form. You could test this in a unit/component level and then get rid of some flaky tests. You won't be able to do it all by yourself though. Why isn't everyone else helping you? Ah, because they don't understand the test pyramid, they can't see where different levels for testing could be explored, or maybe they are QAs that write only functional tests and do not have the expertise to write unit tests. For this, maybe you could introduce a easy-to-use component/service level test framework (cucumber anyone?) and educate them on how those tests differ from what they are used to write, and how we can replace some of those flaky tests by faster, better and in-the-right-level tests.
+  p
+    | It is good to know the root cause, the "because" for the last "why". But it isn't good to focus on it. It is great information for you to formulate your plan of action to break the "whys chain" in a higher level, though.
