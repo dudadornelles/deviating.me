@@ -25,6 +25,12 @@ class Posts
           :name => 'Building this Blog',
           :date => '17/03/2013',
           :permalink => '17-03-2013-building-this-blog'
+        }, 
+        {
+          :name => "Five Whys",
+          :date => '1/05/2013',
+          :permalink => '1-05-2013-five-whys',
+          :live => false
         }
       ].inject([]) { |posts, post| posts << Post.new(post) }
     end

@@ -1,8 +1,9 @@
 footer
   ul
     - @posts.each do |post|
-      li
-        a href="#{post.permalink}"
-          = post.name
+      == if post.live
+        li
+          a href="#{post.permalink}"
+            = post.name
 
 
