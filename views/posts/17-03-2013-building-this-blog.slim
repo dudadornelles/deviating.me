@@ -6,9 +6,8 @@ article
     a href="https://rvm.io" RVM 
     | is a tool that helps you managing your ruby versions (like rbenv). What I like about it though is that you can create 'gemsets' and keep your ruby apps only minding their own business - being able to use different gem versions with no major problems. RVM lets you create a file called '.rvmrc' inside a folder so that everytime you enter that folder the rvm commands will run. My .rvmrc file looks like:
   div
-    pre 
-      code.bash
-        | rvm use 1.9.3@dudadornelles.com --create
+    pre class="brush: bash"
+      | rvm use 1.9.3@dudadornelles.com --create
   p
     | That creates a new gemset called 'dudadornelles.com' or uses it if already created. 
   h3#section_sinatra Sinatra
@@ -18,14 +17,11 @@ article
     | as my template engine and 
     a href='http://www.sass-lang.com' sass 
     | as my css engine. Slim works out of the box in sinatra but for sass there is a small setup. Basically, you'll need a controller to fullfill requests to css files and call sass to process those files. The simplest way to get it to work is to put your sass files inside your views directory - e.g., views/css/myfile.css. So then given you have a stylesheet entry like:
-  pre
-    code.ruby
-      | link rel="stylesheet" type="text/css" href="/home.css"
+  pre class="brush: sass"
+    | link rel="stylesheet" type="text/css" href="/home.css"
   p
     | You should have something like this in your controllers:
-  pre
-    code.ruby
-      span
+  pre class="brush: ruby"
         | get '/:filename.css' do |filename| 
             sass "css/\#{filename}".to_sym
           end
@@ -44,8 +40,7 @@ article
         | - local clone: It is the actual working copy and the only place we will be writing code.
   p
     | The flow is: create the bare repo in the server -> clone it in the server -> clone it in your local -> push code from your local to the bare repo. The moment you push code, you should have a git post-receive hook that updates the repo clone in the server and starts your application. The hook lives in $BARE_REPO_HOME/hooks/post-receive and must be an executable bash file. Mine looks like this:
-  pre
-    code.bash
+  pre class="brush: bash"
       | #!/bin/bash --login
         killall ruby unicorn
         cd  $HOME/live-dudadornelles.com 

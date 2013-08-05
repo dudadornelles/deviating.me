@@ -4,9 +4,22 @@ html
     title dudadornelles.com
 
     link rel="stylesheet" type="text/css" href="/home.css"
+
+    link rel="stylesheet" type="text/css" href="/js/syntaxhighlighter/styles/shCore.css"
+    link rel="stylesheet" type="text/css" href="/js/syntaxhighlighter/styles/shThemeEclipse.css"
+
+    script src="/js/syntaxhighlighter/scripts/shCore.js" 
+    script src="/js/syntaxhighlighter/scripts/shBrushBash.js" 
+    script src="/js/syntaxhighlighter/scripts/shBrushRuby.js" 
+    script src="/js/syntaxhighlighter/scripts/shBrushSass.js" 
+
   == slim :header
+
   body
     .content
       == yield
       == slim :footer
       == render :html, :ga
+
+    script
+      |SyntaxHighlighter.all();

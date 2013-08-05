@@ -1,8 +1,12 @@
-$background: white
+$emerald: #2ecc71
+$green_sea: #16a085
+$nephritis: #27ae60
+
+$background: #eee
 $font: black
-$link_font: gray
-$header: gray
-$titles: gray 
+$link_font: $emerald
+$header: $green_sea
+$titles: $nephritis
 
 @mixin round-corners($amount)
   border-radius: $amount
@@ -16,12 +20,6 @@ $titles: gray
   padding: 10px 10px 10px 15px
   @include round_corners(2px)
 
-@font-face 
-  font-family: 'Sintony'
-  font-style: normal
-  font-weight: 400
-  src: local('Sintony'), url(http://themes.googleusercontent.com/static/fonts/sintony/v1/cu1c4tOdDXpghDFFDdv7MgLUuEpTyoUstqEm5AMlJo4.woff) format('woff')
-
 html
   *
     margin: 0px
@@ -31,7 +29,7 @@ body
   background-color: $background
   font-size: 14px
   color: $font
-  font-family: 'Sintony', sans-serif
+  font-family: Helvetica
   h2,h3,h4,h5
     color: $titles
   h2
@@ -59,12 +57,18 @@ header
 
 .content
   margin: auto
-  width: 53em
+  max-width: 53em
   padding: 0px 20px 0px 0px 
+
+#posts_container
+  background-color: white
+  border: solid 1px lightgray
+  margin-top: 20px
+  padding: 10px
+  @include round_corners(10px)
 
 .post
   padding: 10px 0px 20px 20px
-  width: 50em
   p
     text-indent: 20px
     margin-bottom: 10px
@@ -79,8 +83,6 @@ header
       @include base_block
       li
         list-style: none
-  code
-    @include base_block
 
 .comments
   h3

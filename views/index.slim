@@ -1,5 +1,6 @@
-- @posts.each do |post|
-  == if post.live
-    .post
-      == slim :render_post, :locals => { :post => post }
-    hr
+#posts_container
+  - @posts.each do |post|
+    == if post.live
+      .post
+        == slim :render_post, :locals => { :post => post }
+      hr
