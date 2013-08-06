@@ -5,7 +5,7 @@ class Post
     @permalink = params[:permalink]
     @name = params[:name]
     @date = params[:date]
-    @live = params[:live] != false
+    @live = params[:live]
   end
 
 end
