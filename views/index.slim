@@ -1,6 +1,6 @@
 #posts_container
-  - @posts.each do |post|
-    == if post.live
-      .post
-        == slim :render_post, :locals => { :post => post }
+  - @posts.select(&:live).each do |post|
+    .post
+      == slim :render_post, :locals => { :post => post }
+    - if post != @posts.last
       hr
