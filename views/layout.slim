@@ -13,12 +13,9 @@ html
     script src="/js/syntaxhighlighter/scripts/shBrushRuby.js" 
     script src="/js/syntaxhighlighter/scripts/shBrushSass.js" 
 
-  == slim :header
-
   body
     .content
       == yield
-      == slim :footer
       == render :html, :ga
 
     script

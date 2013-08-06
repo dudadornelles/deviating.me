@@ -1,71 +1,43 @@
-$emerald: #2ecc71
-$green_sea: #16a085
-$nephritis: #27ae60
-
 $background: #eee
 $font: black
-$link_font: $emerald
-$header: $green_sea
-$titles: $nephritis
+$link_font: #2c3e50
+$titles: #34495e
 
 @mixin round-corners($amount)
   border-radius: $amount
   -moz-border-radius: $amount
   -webkit-border-radius: $amount
 
-@mixin base_block
-  display: inline-block
-  background-color: $header
-  margin: 0px 0px 10px 20px
-  padding: 10px 10px 10px 15px
-  @include round_corners(2px)
-
 html
   *
     margin: 0px
     padding: 0px
 
+hr
+  margin-bottom: 40px
+  padding: 0px 20px 0px 20px 
+
 body
   background-color: $background
-  font-size: 14px
   color: $font
   font-family: Helvetica
+  font-size: 11pt
   h2,h3,h4,h5
     color: $titles
-  h2
-    font-size: 18px
-  h3
-    font-size: 16px
   a
     text-decoration: none
     color: $link_font
 
-footer
-  padding: 10px 0px 20px 10px
-  font-size: 16px
-
-header
-  font-family: monospace
-  h1
-    font-size: 20px
-  a
-    color: white
-  padding: 20px 0px 20px 20px
-  margin-bottom: 10px
-  background: $header
-  color: white
-
 .content
   margin: auto
-  max-width: 53em
-  padding: 0px 20px 0px 0px 
+  max-width: 50em
 
 #posts_container
   background-color: white
   border: solid 1px lightgray
-  margin-top: 20px
+  margin: 20px 0px 20px 0px
   padding: 10px
-  @include round_corners(10px)
+  @include round_corners(5px)
 
 .post
   padding: 10px 0px 20px 20px
@@ -80,9 +52,8 @@ header
   article
     padding-left: 15px
     ul
-      @include base_block
-      li
-        list-style: none
+      padding-left: 50px
+      margin-bottom: 20px
 
 .comments
   h3
