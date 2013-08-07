@@ -20,8 +20,6 @@ hr
 body
   background-color: $background
   color: $font
-  font-family: Helvetica
-  font-size: 11pt
   h2,h3,h4,h5
     color: $titles
   a
@@ -33,11 +31,18 @@ body
   max-width: 50em
 
 #posts_container
+  font-family: verdana
+  font-size: 10pt
   background-color: white
-  border: solid 1px lightgray
-  margin: 20px 0px 20px 0px
-  padding: 10px
-  @include round_corners(5px)
+  border: solid lightgray
+  border-width: 0px 1px 0px 1px
+  padding: 40px 100px 0px 80px
+
+@media screen and (max-width: 600px)
+  *
+    padding: 0px !important
+  #posts_container
+    padding: 30px !important
 
 .post
   padding: 10px 0px 20px 20px
@@ -45,7 +50,8 @@ body
     text-indent: 20px
     margin-bottom: 10px
   h2
-    font-size: 24px
+    font-size: 22pt
+    font-family: impact
     margin-bottom: 15px
   h3
     margin: 10px 0px 10px 0px
