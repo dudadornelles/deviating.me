@@ -13,9 +13,12 @@ html
 
     link rel="stylesheet" type="text/css" href="/home.css"
   body
-    .content
-      == yield
-      == render :html, :ga
+    .body_content
+      .content
+        == yield
+        == render :html, :ga
 
+      .panel
+        == render :slim, :panel
     script
       |SyntaxHighlighter.all();

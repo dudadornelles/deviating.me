@@ -2,6 +2,7 @@ $background: #eee
 $font: black
 $link_font: #2C3DBF
 $titles: #34495e
+$panel: #8CBEC6
 
 @mixin round-corners($amount)
   border-radius: $amount
@@ -17,6 +18,9 @@ hr
   margin-bottom: 40px
   padding: 0px 20px 0px 20px 
 
+html,body
+  height: 100%
+
 body
   background-color: $background
   color: $font
@@ -27,16 +31,10 @@ body
   a
     color: $link_font
 
-.content
-  margin: auto
-  max-width: 50em
 
 #posts_container
-  font-family: verdana
   font-size: 10pt
   background-color: white
-  border: solid lightgray
-  border-width: 0px 1px 0px 1px
   padding: 40px 100px 0px 80px
 
 @media screen and (max-width: 600px)
@@ -44,6 +42,11 @@ body
     padding: 0px !important
   #posts_container
     padding: 30px !important
+  .panel
+    width: auto !important
+    float: none !important
+  .content
+    float: none !important
 
 .post
   padding: 10px 0px 20px 20px
@@ -71,3 +74,40 @@ body
 
 .syntaxhighlighter .toolbar
   visibility: hidden
+
+.body_content
+  max-width: 60em
+  margin: auto
+  position: relative
+  height: 100%
+  font-family: verdana
+
+.panel
+  width: 15em
+  position: fixed
+  vertical-align: top
+  height: 100%
+  display: inline-block
+  background-color: $panel
+  padding: 250px 20px 0px 20px
+  font-family: arial
+  font-size: 10pt
+  border: solid lightgray
+  border-width: 0px 2px 0px 0px
+  box-shadow: inset 8px 0px 12px -7px rgba(0, 0, 0, 0.6)
+  img
+    width: 4.5em
+    height: 4.5em
+    border-radius: 35px
+    border: inherit
+    border-width: 1px 
+    float: left
+    margin-right: 15px
+  .panel_description
+    padding-top: 5px
+
+.content
+  border: solid lightgray
+  border-width: 0px 0px 0px 2px
+  display: inline-block
+  max-width: 45em
