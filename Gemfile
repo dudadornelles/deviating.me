@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '1.9.3'
 
 gem 'sinatra'
 gem 'unicorn'
 gem 'slim'
 gem 'sass'
-gem 'tilt', '1.3.3'
+gem 'tilt'
 
 group :development do
   gem 'shotgun'

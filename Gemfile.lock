@@ -31,5 +31,5 @@ DEPENDENCIES
   shotgun
   sinatra
   slim
-  tilt (= 1.3.3)
+  tilt
   unicorn
