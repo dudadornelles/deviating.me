@@ -1,0 +1,71 @@
+article
+  p
+    | The whole Transformation Priority Premise thing has attracted my attention. In a nutshell, Uncle Bob developed a 
+    | theory where he states that 
+    em "Code gets more generic as tests get more specific"
+    | , and he called 
+    em Transformations 
+    | the set of different changes that are applied to the production code to make a test pass. More than that, when writing tests you
+    | are also applying 
+    em Transformations 
+    | and, and choosing the right transformation for the next test leads us to a better overall solution. 
+    | Going further: Transformations can be ordered by priority. Simpler transformations are of higher priority. Follows a list (from higher to lower priority):
+  ul
+    li
+      | ({}–>nil) no code at all -> code that employs nil
+    li
+      | (nil -> constant)
+    li
+      | (constant -> constant+) a simple constant to a more complex constant
+    li
+      | (constant -> scalar) replacing a constant with a variable or an argument
+    li
+      | (statement -> statements) adding more unconditional statements.
+    li
+      | (unconditional -> if) splitting the execution path
+    li
+      | (scalar -> array)
+    li
+      | (array -> container)
+    li
+      | (statement -> recursion)
+    li
+      | (if -> while)
+    li
+      | (expression -> function) replacing an expression with a function or algorithm
+    li
+      | (variable -> assignment) replacing the value of a variable.
+  p
+    | You must strive to use tranformations of higher priority over lower priority.
+  p
+    | So I decided to try.
+  h3
+    | The Problem
+  p
+    | In TWU (link), we do a series of coding dojos in order to practice different concepts. The first one is TDD. The problem statement is as follows
+  .emphasis
+    | "You are given strings of different lengths. If the number of vowels are more than 30% of the string length then insert ‘mommy’ for each continuous set of vowels."
+  p
+    | I'll start with the simplest test I could
+  pre class="brush: java"
+    | class MommifierTest {
+
+        @Test
+        public void testMommifier() throws Exception {
+          assertThat(new Mommifier().mommify(""), is(""));
+        }
+
+      }  
+  p
+    | To pass that test, first I use my IDE to generate some code -and that applies the higher priority premise: 
+    . ({}–>nil)"
+  pre class="brush: java"
+    | class Mommifier {
+      
+        public String mommify(String word) {
+          return null;
+        }
+
+      }  
+
+
