@@ -15,7 +15,7 @@ html
   body
     .content
       == yield
-    == render :html, :ga
+    == slim :ga
 
     script
       |SyntaxHighlighter.all();
