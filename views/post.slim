@@ -1,4 +1,8 @@
+
 #posts_container
+  a.back_link href="/"
+    | &larr;
+
   .post
     == slim :render_post, :locals => { :post => @post }
 

@@ -1,5 +1,5 @@
 #posts_container
-  - @posts.select(&:live).each do |post|
+  - @posts.each do |post|
     .post
       == slim :render_post, :locals => { :post => post }
     - if post != @posts.last

@@ -11,7 +11,7 @@ set :port, 80
 class DudaDornellesCom < Sinatra::Base
 
   before do
-    @posts = Posts.last 5
+    @posts = Posts.all.reverse.select(&:live)
   end
     
   get '/:filename.css' do |filename| 

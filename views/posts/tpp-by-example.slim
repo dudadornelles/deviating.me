@@ -1,71 +1,348 @@
 article
   p
-    | The whole Transformation Priority Premise thing has attracted my attention. In a nutshell, Uncle Bob developed a 
-    | theory where he states that 
-    em "Code gets more generic as tests get more specific"
+    | The whole 
+    a href="http://blog.8thlight.com/uncle-bob/2013/05/27/TheTransformationPriorityPremise.html"
+      | Transformation Priority Premise
+    |  thing has attracted my attention. In a nutshell, Uncle Bob developed a theory where he states that 
+    em "As the tests get more specific, the code gets more generic."
     | , and he called 
     em Transformations 
-    | the set of different changes that are applied to the production code to make a test pass. More than that, when writing tests you
-    | are also applying 
-    em Transformations 
-    | and, and choosing the right transformation for the next test leads us to a better overall solution. 
-    | Going further: Transformations can be ordered by priority. Simpler transformations are of higher priority. Follows a list (from higher to lower priority):
-  ul
-    li
-      | ({}–>nil) no code at all -> code that employs nil
-    li
-      | (nil -> constant)
-    li
-      | (constant -> constant+) a simple constant to a more complex constant
-    li
-      | (constant -> scalar) replacing a constant with a variable or an argument
-    li
-      | (statement -> statements) adding more unconditional statements.
-    li
-      | (unconditional -> if) splitting the execution path
-    li
-      | (scalar -> array)
-    li
-      | (array -> container)
-    li
-      | (statement -> recursion)
-    li
-      | (if -> while)
-    li
-      | (expression -> function) replacing an expression with a function or algorithm
-    li
-      | (variable -> assignment) replacing the value of a variable.
+    | the set of different changes that are applied to the production code to make it more generic in order to pass a test. 
+    | More than that, when writing tests you are also applying 
+    em Transformations
+    |  ,and choosing the right transformation for the next test (and later to pass it) leads us to a better overall solution. 
+    | Going further: Transformations can be ordered by priority. Simpler transformations are of higher priority. Follows the list (from higher to lower priority):
+    ul
+      li
+        | ({}–>nil) no code at all -> code that employs nil
+      li
+        | (nil -> constant)
+      li
+        | (constant -> constant+) a simple constant to a more complex constant
+      li
+        | (constant -> scalar) replacing a constant with a variable or an argument
+      li
+        | (statement -> statements) adding more unconditional statements.
+      li
+        | (unconditional -> if) splitting the execution path
+      li
+        | (scalar -> array)
+      li
+        | (array -> container)
+      li
+        | (statement -> recursion)
+      li
+        | (if -> while)
+      li
+        | (expression -> function) replacing an expression with a function or algorithm
+      li
+        | (variable -> assignment) replacing the value of a variable.
   p
-    | You must strive to use tranformations of higher priority over lower priority.
+    | You must strive to use tranformations of higher priority over lower priority ones.
   p
     | So I decided to try.
   h3
     | The Problem
   p
-    | In TWU (link), we do a series of coding dojos in order to practice different concepts. The first one is TDD. The problem statement is as follows
-  .emphasis
-    | "You are given strings of different lengths. If the number of vowels are more than 30% of the string length then insert ‘mommy’ for each continuous set of vowels."
-  p
-    | I'll start with the simplest test I could
-  pre class="brush: java"
-    | class MommifierTest {
+    | Let's tackle a very simple problem:
+    .emphasis
+      p
+        | "You are given strings of different lengths. Insert ‘bazinga’ for each continuous set of vowels."
+      p
+        | e.g.: "her" -> "hbazingar", "bear" -> "bbazingar"
+  h3
+    | The Solution
+  p  
+    | I'll start with the simpliest test I can imagine:
+    pre class="brush: java"
+      | class BazingafierTest {
 
         @Test
-        public void testMommifier() throws Exception {
-          assertThat(new Mommifier().mommify(""), is(""));
-        }
+          public void testBazingafier() throws Exception {
+            assertThat(new Bazingafier().bazingafy(""), is(""));
+          }
 
-      }  
-  p
-    | To pass that test, first I use my IDE to generate some code -and that applies the higher priority premise: 
-    . ({}–>nil)"
-  pre class="brush: java"
-    | class Mommifier {
-      
-        public String mommify(String word) {
+        }  
+    | To pass that test, first I use my IDE to generate some code -and that applies the highest priority transformation: 
+    span.em2
+      | ({} –> nil)
+    pre class="brush: java"
+      | class Bazingafier {
+
+        public String bazingafy(String word) {
           return null;
+          }
+
+        }  
+    | The test isn't passing. By using another transformation, 
+    span.em2
+      | (nil -> constant)
+    |  we can make it pass. We had:
+    pre class="brush: java"
+      | return null;
+    | Apply 
+    span.em2
+      | (nil -> constant)
+    | :
+    pre class="brush: java"
+      | return "";
+    | And the tests are passing. Now let's apply a transformation to the test in order to find the next test. 
+    | In the beggining we had no code so we applied 
+    span.em2
+      | ({} -> nil)
+    |  and 
+    span.em2
+      | (nil -> constant)
+    |  to get our first failing test. We can use  
+    span.em2
+      |(constant -> constant+)
+    |  and write a new test. Our previous constant was 
+    span.em2
+      | ""
+    |, now we will make it more complex, for instance: 
+    span.em2
+      |"a"
+    |.
+    pre class="brush: java"
+      | assertThat(new Bazingafier().bazingafy("a"), is("bazinga"));
+    | Observe how this is too much of a big jump. To implement code that passes this test we will need a transformation with very low priority, 
+    span.em2
+      | (unconditional -> if)
+    |. I could write a different test, such as:
+    pre class="brush: java"
+      | assertThat(new Bazingafier().bazingafy("t"), is("t"));
+    | and it would require a lower priority transformation to make this test pass. 
+    | Following the priority premise, let's go with that. To make that test pass, I will apply 
+    span.em2
+      | (constant -> scalar)
+    |.
+    pre class="brush: java"
+      | return word;
+    | And all tests should be passing. Next test:
+    pre class="brush: java"
+      | assertThat(new Bazingafier().bazingafy("a"), is("bazinga"));
+    | To pass this test I will need the following transformation: 
+    span.em2
+      | (unconditional -> if)
+    |.
+    pre class="brush: java"
+      | if (word.equals("a")) {
+          return "bazinga";
+        }
+        return word;
+    | That takes care of a single vowel. We will need tests for the others as well.
+    pre class="brush: java"
+      | assertThat(new Bazingafier().bazingafy("e"), is("bazinga"));
+        assertThat(new Bazingafier().bazingafy("i"), is("bazinga"));
+        assertThat(new Bazingafier().bazingafy("o"), is("bazinga"));
+        assertThat(new Bazingafier().bazingafy("u"), is("bazinga"));
+    | We can pass this tests by transforming 
+    span.em2
+      | (statement -> statements)
+    |.
+    pre class="brush: java"
+      | if (word.equals("a")
+          || word.equals("e")
+          || word.equals("i")
+          || word.equals("o")
+          || word.equals("u")) {
+          return "bazinga";
+        }
+        return word;
+    | And all tests are passing. That is too big of a condition so I'll refactor and extract a method out of it.
+    pre class="brush: java"
+      | private boolean isVowel(String word) {
+        return word.equals("a")
+          || word.equals("e")
+          || word.equals("i")
+          || word.equals("o")
+          || word.equals("u");
         }
 
-      }  
+        public String bazingafy(String word) {
+          if (isVowel(word)) {
+            return "bazinga";
+          }
+          return word;
+        }
+    | I'll refactor the code to have a single return statement. This will make it easier to accomodate further changes.
+    pre class="brush: java"
+      | public String bazingafy(String word) {
+        String bazingafiedWord = "";
+          if (isVowel(word)) {
+            bazingafiedWord = "bazinga";
+          } else {
+            bazingafiedWord = word;
+          }
+          return bazingafiedWord;
+        }
+    | And all tests are passing.
+  p
+    | Things will get interesting now. We are done with empty strings, single consonants and vowels. From what I can think, the next test that will fail is:
+    pre class="brush: java"
+      | assertThat(new Bazingafier().bazingafy("qa"), is("qbazinga"));
+    | Great, test is failling. The more straightforward way I can think of on how to pass this test is by iterating over the characters of the word. That would be a very low priority 
+    span.em2
+      | (expression -> function)
+    |  transformation.
+    pre class="brush: java"
+      | String bazingafiedWord = "";
+        for (Character letter : word.toCharArray()) {
+          if (isVowel(letter.toString())) {
+            bazingafiedWord += "bazinga";
+          } else {
+            bazingafiedWord += letter;
+          }
+        }
+        return bazingafiedWord;
+    | Now for the next test:
+    pre class="brush: java"
+      | assertThat(new Bazingafier().bazingafy("hear"), is("hbazingar"));
+    | Now that is an interesting situation. How can we make that pass? I can't see any simple transformation that would make it pass. I could try to keep a reference to the previous letter and then only append 
+    span.em2
+      | "bazinga"
+    |  to 
+    span.em2
+      | bazingafiedWord
+    |  in case the current letter is not a vowel but the previous letter is, but that would break cases where I have a single vowel. Another option would be testing if the current letter is a vowel _and_ the current bazingafied word ends with 
+    span.em
+      | "bazinga"
+    |  and not append it then. It could work...
+  p
+    | But I have this feeling that something went wrong. And that's because I didn't follow the Transformation Priority Premise. Let's go back to when I wrote our first test with more than one charater:
+    pre class="brush: java"
+      | assertThat(new Bazingafier().bazingafy("qa"), is("qbazinga"));
+    | Before, when faced with this test, I've decided to go with 
+    span.em2
+      | (expression -> function)
+    | . There I didn't realize that there was a higher priority transformation to be applied: 
+    span.em2
+      | (statement -> recursion)
+  p
+    | So let's try it. At that moment, the code looked like this:
+    pre class="brush: java"
+      | public String bazingafy(String word) {
+        String bazingafiedWord = "";
+          if (isVowel(word)) {
+            bazingafiedWord = "bazinga";
+          } else {
+            bazingafiedWord = word;
+          }
+          return bazingafiedWord;
+        }
+    | Applying 
+    span.em2
+      | (statement -> recursion)
+    |:
+    pre class="brush: java"
+      | public String bazingafy(String word) {
+          if (word.isEmpty()) {
+            return word;
+          }
+
+          String bazingafiedWord = "";
+          String firstLetter = String.valueOf(word.charAt(0));
+
+          if (isVowel(firstLetter)) {
+            bazingafiedWord = "bazinga";
+          } else {
+            bazingafiedWord = firstLetter;
+          }
+
+          return bazingafiedWord + bazingafy(word.substring(1));
+        }
+    | That passes the test. 
+  p  
+    | The next test:
+    pre class="brush: java"
+      | assertThat(new Bazingafier().bazingafy("hear"), is("hbazingar"));
+    | Now looking at my algorithm I can easily find a solution. I can now pass the letter there is being bazingafied into the recursive function (and call it 
+    span.em2 previousLetter
+    | ). Then, if the previous letter was a vowel and the current letter is a vowel I will just skip this letter and keep going with the recursive algorithm. For the first call I'll initialize it with 
+    span.em2 null
+    | . I have then to add a null check in the 
+    span.em2 isVowel
+    |  method to avoid an exception.
+    pre class="brush: java"
+      | public class Bazingafier {
+
+          public String bazingafy(String word) {
+            return bazingafy(null, word);
+          }
+
+          private String bazingafy(String previousLetter, String word) {
+            if (word.isEmpty()) {
+              return word;
+            }
+
+            String firstLetter = String.valueOf(word.charAt(0));
+
+            if (isVowel(firstLetter) && isVowel(previousLetter)) {
+              return bazingafy(word.substring(1));
+            }
+
+            String bazingafiedLetter = "";
+            if (isVowel(firstLetter)) {
+              bazingafiedLetter = "bazinga";
+            } else {
+              bazingafiedLetter = firstLetter;
+            }
+
+            return bazingafiedLetter + bazingafy(firstLetter, word.substring(1));
+          }
+
+          private boolean isVowel(String letter) {
+            if (letter == null) return false;
+            return letter.equals("a")
+                   || letter.equals("e")
+                   || letter.equals("i")
+                   || letter.equals("o")
+                   || letter.equals("u");
+          }
+        }
+    | That passes all the tests! It could use some refactoring though:
+    pre class="brush: java"
+      | public class Bazingafier {
+
+          public static final String VOWELS = "aeiou";
+
+          public String bazingafy(String word) {
+            return bazingafy(null, word);
+          }
+
+          private String bazingafy(String previousLetter, String word) {
+            String firstLetter = String.valueOf(word.charAt(0));
+
+            if (word.isEmpty()) {
+              return word;
+            }
+            if (areBothVowels(firstLetter, previousLetter)) {
+              return bazingafy(word.substring(1)); 
+            }
+            return bazingafyLetter(firstLetter) + bazingafy(word.substring(1));
+          }
+
+          private boolean areBothVowels(String aLetter, String otherLetter) {
+            return isVowel(aLetter) && isVowel(anotherLetter);
+          }  
+
+          private String bazingafyLetter(String word, String firstLetter) {
+            return isVowel(firstLetter) ? "bazinga" : firstLetter
+          }
+
+          private boolean isVowel(String letter) {
+            return letter != null && VOWELS.contains(letter);
+          }
+        }
+    | And I'm done.
+  h3
+    | Yes, I know...
+  p
+    | ..it could also be solved with:
+    pre class="brush: java"
+      | return word.replaceAll("[aeiou]+", "bazinga");
+    | But that is not the point. :)
+
+
 
 
