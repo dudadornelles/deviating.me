@@ -25,7 +25,7 @@ class Posts
           :name => 'Building this Blog',
           :date => '17/03/2013',
           :permalink => 'building-this-blog',
-          :live => true
+          :live => false
         }, 
         {
           :name => "Five Whys",
