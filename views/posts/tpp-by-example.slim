@@ -111,7 +111,7 @@ article
     |. I could write a different test, such as:
     pre class="brush: java"
       | assertThat(new Bazingafier().bazingafy("t"), is("t"));
-    | and it would require a lower priority transformation to make this test pass. 
+    | and it would require a higher priority transformation, to make this test pass. 
     | Following the priority premise, let's go with that. To make that test pass, I will apply 
     span.em2
       | (constant -> scalar)
