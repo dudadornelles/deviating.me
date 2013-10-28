@@ -38,7 +38,7 @@ article
       li
         | (variable -> assignment) replacing the value of a variable.
   p
-    | You must strive to use tranformations of higher priority over lower priority ones.
+    | You must strive to use transformations of higher priority over lower priority ones.
   p
     | So I decided to try.
   h3
@@ -53,7 +53,7 @@ article
   h3
     | The Solution
   p  
-    | I'll start with the simpliest test I can imagine:
+    | I'll start with the simplest test I can imagine:
     pre class="brush: java"
       | class BazingafierTest {
 
@@ -87,7 +87,7 @@ article
     pre class="brush: java"
       | return "";
     | And the tests are passing. Now let's apply a transformation to the test in order to find the next test. 
-    | In the beggining we had no code so we applied 
+    | In the beginning we had no code so we applied 
     span.em2
       | ({} -> nil)
     |  and 
@@ -165,7 +165,7 @@ article
           }
           return word;
         }
-    | I'll refactor the code to have a single return statement. This will make it easier to accomodate further changes.
+    | I'll refactor the code to have a single return statement. This will make it easier to accommodate further changes.
     pre class="brush: java"
       | public String bazingafy(String word) {
           String bazingafiedWord = "";
@@ -181,7 +181,7 @@ article
     | Things will get interesting now. We are done with empty strings, single consonants and vowels. From what I can think, the next test that will fail is:
     pre class="brush: java"
       | assertThat(new Bazingafier().bazingafy("qa"), is("qbazinga"));
-    | Great, test is failling. The more straightforward way I can think of on how to pass this test is by iterating over the characters of the word. That would be a very low priority 
+    | Great, test is failing. The more straightforward way I can think of on how to pass this test is by iterating over the characters of the word. That would be a very low priority 
     span.em2
       | (expression -> function)
     |  transformation.
