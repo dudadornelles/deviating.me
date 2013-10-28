@@ -6,11 +6,11 @@ article
     |  thing has attracted my attention. In a nutshell, Uncle Bob developed a theory where he states that 
     em "As the tests get more specific, the code gets more generic."
     | , and he called 
-    em Transformations 
-    | the set of different changes that are applied to the production code to make it more generic in order to pass a test. 
+    em Transformations
+    |  the set of different changes that are applied to the production code to make it more generic in order to pass a test. 
     | More than that, when writing tests you are also applying 
     em Transformations
-    |  ,and choosing the right transformation for the next test (and later to pass it) leads us to a better overall solution. 
+    | , and choosing the right transformation for the next test (and later to pass it) leads us to a better overall solution. 
     | Going further: Transformations can be ordered by priority. Simpler transformations are of higher priority. Follows the list (from higher to lower priority):
     ul
       li
@@ -152,11 +152,11 @@ article
     | And all tests are passing. That is too big of a condition so I'll refactor and extract a method out of it.
     pre class="brush: java"
       | private boolean isVowel(String word) {
-        return word.equals("a")
-          || word.equals("e")
-          || word.equals("i")
-          || word.equals("o")
-          || word.equals("u");
+          return word.equals("a")
+            || word.equals("e")
+            || word.equals("i")
+            || word.equals("o")
+            || word.equals("u");
         }
 
         public String bazingafy(String word) {
@@ -168,7 +168,7 @@ article
     | I'll refactor the code to have a single return statement. This will make it easier to accomodate further changes.
     pre class="brush: java"
       | public String bazingafy(String word) {
-        String bazingafiedWord = "";
+          String bazingafiedWord = "";
           if (isVowel(word)) {
             bazingafiedWord = "bazinga";
           } else {
