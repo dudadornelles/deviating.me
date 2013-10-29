@@ -1,21 +1,89 @@
 article
   p
-    | I'm a consultant. I get assigned to projects where I don't get to choose the tech stack, I don't get to choose the domain, I don't get to choose the people I'll be working with. I get assigned to projects that need to be delivered, and I have to help them delivering regardless the tech stack, the domain or the people I'm working with. 
+    | As a software consultant. I get assigned to projects where I don't get to choose the tech stack, I don't get to choose the domain and I don't get to choose the people I'll be working with. I get assigned to projects that need to be delivered and it is my job to help delivering that project regardless the 
+    em tech stack
+    | , the 
+    em domain
+    |  or the 
+    em people
+    |  I'm working with. 
   p
-    | No matter how hard is the situation at a particular project, I'll learn the tech stack and, eventually, I'll learn the domain. But if you are a consultant, you probably know that the hard part to solve in this equation is the people. You have to work with whom you have to work with, period. My friend 
-    a href="http://marcovaltas.com"
-      | Marco Valtas 
-    | says that "We have to assume that the people we will be working with is the only thing in a project that won't change, so deal with it". I say the same.
+    | No matter how hard is the situation at a particular project, it is possible for me to learn the tech stack and the domain. But if you are a consultant, you probably know that the hard part to solve in this equation is the people. You have to work with whoever you have to work with, period. My friend 
+    a href='http://marcovaltas.com'
+      | Marco Valtas
+    |  says that "We have to assume that the people we will be working with is the only thing in a project that won't change, so deal with it". I say the same.
   p
-    | I'm an agile consultant, and I have been taught that, when we face a problem, we should ask 5 whys. The build is always broken- why? Because the tests are flaky- why? Because the tests are not well written- why? Because they are testing the wrong things in the wrong testing level- why? Because the team don't know about the test pyramid- why? Because the hiring process isn't as good as it could be.
+    | One of the things I have been taught when an apprentice was that, when we face a problem, we should ask 5 whys in order to get to the root cause of that problem. E.g.: The build is always broken- 
+    em why?
+    |  Because the 
+    a href='http://martinfowler.com/articles/nonDeterminism.html'
+      | tests are flaky
+    |- 
+    em why?
+    |  Because the team is testing the wrong things in the wrong level- 
+    em why?
+    |  Because the team does not know about the 
+    a href='http://martinfowler.com/bliki/TestPyramid.html'
+      | test pyramid
+    |- 
+    em why?
+    |  Because they've never got educated in that subject. They are also afraid of learning about it- 
+    em why?
+    |  Because they don't know much about agile and might be afraid of losing their jobs.
   p
-    | OK, we have the root cause. Now what do we do with it? Let's go talk to whoever is on charge of hiring decisions and tell them to raise the bar. Truth is, this approach will hardly work. You don't know this person- your influence over them won't be enough. You could create some friction there too- "Are you saying our people are bad?".
-  p
+    | OK, we have the root cause. Now what do we do with it? Let's go talk to whoever is on charge of hiring decisions and tell them to raise the bar and hire people with agile experience. Truth is, this approach will hardly work. You don't know this person- your influence over them won't be enough. You could create some friction there too- 'Are you saying our people are bad?'. From my experience I would risk to state:
+  .emphasis
     | As a consultant, the chances of solving a problem your client has will get smaller as you try to fight the root cause. The root cause is bigger than you. The root cause is, most of the times, 
     em someone.
   p
     | It is people, the immutable variable of a consultancy gig. You can't fix that.
   p
-    | You have to break the chains of "whys". You have to find a point of inflection where you can, with cirurgical skills, propose/implement a solution in one of the why levels that will then bubble up and solve your initial problem. The build is broken because the tests are flaky? Maybe try a quarantine CI where you can isolate these tests and see why they are flaky. Maybe that won't help though, so we go to the next "why level": why were those tests flaky in the first place? Because they were testing the wrong thing in the wrong level. Say they were browser tests checking on validation rules for the user registration form. You could test this in a unit/component level and then get rid of some flaky tests. You won't be able to do it all by yourself though. Why isn't everyone else helping you? Ah, because they don't understand the test pyramid, they can't see where different levels for testing could be explored, or maybe they are QAs that write only functional tests and do not have the expertise to write unit tests. For this, maybe you could introduce a easy-to-use component/service level test framework (cucumber anyone?) and educate them on how those tests differ from what they are used to write, and how we can replace some of those flaky tests by faster, better and in-the-right-level tests.
+    | You have to break the chains of 'whys'. You have to find a point of inflection where you can propose/implement a solution in one of the 'why' levels that will then bubble up and solve your initial problem. Let's go back to the 'broken build' example.
+    p
+      span.em2 Q: Why is the build broken?
+  h3 1. The tests are flaky
   p
-    | It is good to know the root cause, the "because" for the last "why". But it isn't good to focus on it. It is great information for you to formulate your plan of action to break the "whys chain" in a higher level, though.
+    | Maybe try a quarantine CI where you can isolate these tests and see why they are flaky. Maybe that won't help though, so we go to the next level.
+    p
+      span.em2 Q: Why were those tests flaky in the first place? 
+  h3 2. The team is testing the wrong things in the wrong testing level
+  p
+    | Think of the test pyramid! Say they were browser tests checking on validation rules for the user registration form. You could test this in a unit/component level and then get rid of some flaky tests. You won't be able to do it all by yourself though. 
+    p
+      span.em2 Q: Why isn't everybody else helping me? 
+  h3 3. The team doesn't understand the test pyramid
+  p
+    | Right now, the team can't see where different levels for testing could be explored. For this, maybe you could try running some sessions on the test pyramid and some dojos on unit testing, or even introduce an easy-to-use component/service level test framework (cucumber anyone?) and educate them on how those tests differ from what they are used to write, and how we can replace some of those flaky tests by faster, better and in-the-right-level tests. If that doesn't work, then ask yourself:
+    p
+      span.em2 Q: Why don't they know/apply the test pyramid?
+  h3 4. Some people in the team never got educated in that subject
+  p
+    | Here you must persist and kindly start talking more and more about the subject. Be patient. You want to take your clients in a journey and it might be hard for them to follow your steps or even to accept that things must change. Be patient again. You might want ask yourself: 
+    p
+      span.em2 Q: Why are my clients afraid of change?
+  h3 5. It doesn't matter
+  p
+    | You just reached a level where things are going to be too hard to fix. Truth is, your clients have been working that same way for years, they might fear for their jobs or they might not really know what they are doing. But you just can't do much about it, so forget about it and look for other solutions.
+  hr
+  p
+    | One could argue that when your problem is people that it should also be the problem you fix first. It is definitely a way of solving it -the most effective and difficult. I believe there are other options.
+  p 
+    | Observe the following chart: (found in 
+    a href="http://www.russellconsultinginc.com/docs/white/culture.html"
+      | http://www.russellconsultinginc.com/docs/white/culture.html
+    |)
+    .centered_image
+      img src="/img/levels.gif"
+  p
+    | I believe that organizations are driven by people but also by results. Delivering solutions (and thus generating money) is the top priority for most organizations. From experience I can tell that solutions in a high level of the organziation infrastructure, if given enough visibility, can lead 
+    em by example
+    |  and drive changes in the level below. For instance, a new process that really delivers (a succesfull solution), if given enough visibility, can drive changes in the whole organization, just because 
+    em everybody else
+    |  also wants to be succesfull.
+  .emphasis
+    | The right solution can prove that changes are needed. However, changes all alone are not the guarantee that a problem will be solved.
+  hr
+  p
+    | It is good to know the root cause, the 'because' for the last 'why'. In certain cases you might be able to even fix it! But when you understand that the root cause is 
+    em people
+    | , then you definitely want to think twice. Find the solution somewhere else and make it visible: just that, alone, will drive changes everywhere else.

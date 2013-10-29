@@ -31,7 +31,7 @@ class Posts
           :name => "Five Whys",
           :date => '1/05/2013',
           :permalink => 'five-whys',
-          :live => false
+          :live => true
         },
         {
           :name => "TPP By Example",
@@ -39,7 +39,6 @@ class Posts
           :permalink => 'tpp-by-example',
           :live => true
         }
- 
       ].inject([]) { |posts, post| posts << Post.new(post) }
     end
   end
