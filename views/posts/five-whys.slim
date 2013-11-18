@@ -40,28 +40,34 @@ article
   p
     | You have to break the chains of 'whys'. You have to find a point of inflection where you can propose/implement a solution in one of the 'why' levels that will then bubble up and solve your initial problem. Let's go back to the 'broken build' example.
     p
-      span.em2 Q: Why is the build broken?
-  h3 1. The tests are flaky
+  h3 1. Why is the build broken? 
+  p 
+    span.em2 A: The tests are flaky 
   p
     | Maybe try a quarantine CI where you can isolate these tests and see why they are flaky. Maybe that won't help though, so we go to the next level.
     p
-      span.em2 Q: Why were those tests flaky in the first place? 
-  h3 2. The team is testing the wrong things in the wrong testing level
+      
+  h3 2. Why were those tests flaky in the first place?  
+  p
+    span.em2 A: The team is testing the wrong things in the wrong testing level
   p
     | Think of the test pyramid! Say they were browser tests checking on validation rules for the user registration form. You could test this in a unit/component level and then get rid of some flaky tests. You won't be able to do it all by yourself though. 
     p
-      span.em2 Q: Why isn't everybody else helping me? 
-  h3 3. The team doesn't understand the test pyramid
+  h3 3. Why isn't everybody else helping me? 
+  p
+    span.em2 A: The team doesn't understand the test pyramid
   p
     | Right now, the team can't see where different levels for testing could be explored. For this, maybe you could try running some sessions on the test pyramid and some dojos on unit testing, or even introduce an easy-to-use component/service level test framework (cucumber anyone?) and educate them on how those tests differ from what they are used to write, and how we can replace some of those flaky tests by faster, better and in-the-right-level tests. If that doesn't work, then ask yourself:
     p
-      span.em2 Q: Why don't they know/apply the test pyramid?
-  h3 4. Some people in the team never got educated in that subject
+  h3 4. Why don't they know/apply the test pyramid?
+  p
+    span.em2 A: Some people in the team never got educated in that subject
   p
     | Here you must prevail and kindly start talking more and more about the subject. Be patient. You want to take your clients on a journey and it might be hard for them to follow your steps or even to accept that things must change. Be patient again. You might want ask yourself: 
     p
-      span.em2 Q: Why are my clients afraid of change?
-  h3 5. It doesn't matter
+  h3 5. Why are my clients afraid of change? 
+  p  
+    span.em2 A: It doesn't matter
   p
     | You just reached a level where things are going to be too hard to fix. Truth is, your clients have been working that same way for years, they might fear for their jobs or they might not really know what they are doing. But you just can't do much about it, so forget it and look for other solutions.
   hr
