@@ -1,6 +1,9 @@
 #posts_container
   - @posts.each do |post|
     .post
-      == slim :render_post, :locals => { :post => post }
+      == (slim :render_post, :locals => { :post => post }).split("</p>").slice(0,2).join("") + "</article>"
+      p.read_more
+        a href="/posts/#{post.permalink}"
+          |Read more...
     - if post != @posts.last
       hr
