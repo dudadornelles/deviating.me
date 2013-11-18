@@ -3,6 +3,7 @@ html
   head
     title deviating.me - Duda Dornelles
 
+    link rel="stylesheet" type="text/css" href="/css/css-social-buttons-master/css/zocial.css"
     link rel="stylesheet" type="text/css" href="/js/syntaxhighlighter/styles/shCore.css"
     link rel="stylesheet" type="text/css" href="/js/syntaxhighlighter/styles/shThemeEclipse.css"
     meta name="viewport" content="width=device-width, user-scalable=no"
@@ -16,6 +17,21 @@ html
   body
     .content
       == yield
+      hr
+      .about_me  
+        p
+          |My name is Duda Dornelles and I work as a software developer consultant for 
+          a href="www.thoughtworks.com"
+            | ThoughtWorks
+          |.
+        ul
+          li
+            a class="zocial github icon" href="http://www.github.com/dudadornelles"
+          li
+            a class="zocial twitter icon" href="http://www.twitter.com/dudadornelles"
+          li
+            a class="zocial linkedin icon" href="http://www.linkedin.com/pub/robson-dornelles/11/807/184"
+
     == slim :ga
 
     script
