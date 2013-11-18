@@ -28,13 +28,13 @@ class Posts
           :live => false
         }, 
         {
-          :name => "Five Whys",
+          :name => "FIVE WHYS ADVANCED",
           :date => '1/05/2013',
           :permalink => 'five-whys',
-          :live => false
+          :live => true
         },
         {
-          :name => "TPP By Example",
+          :name => "TPP BY EXAMPLE",
           :date => '27/10/2013',
           :permalink => 'tpp-by-example',
           :live => true
