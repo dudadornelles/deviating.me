@@ -8,7 +8,7 @@ require File.join(settings.root, "app/post")
 ROOT_FOLDER = settings.root
 set :port, 80
 
-class DudaDornellesCom < Sinatra::Base
+class DeviatingMe < Sinatra::Base
 
   before do
     @posts = Posts.all.reverse.select(&:live)

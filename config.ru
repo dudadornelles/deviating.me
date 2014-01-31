@@ -1,3 +1,3 @@
-require File.expand_path('dudadornellescom')
+require File.expand_path('deviatingme')
 
-run DudaDornellesCom
+run DeviatingMe
