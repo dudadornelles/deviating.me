@@ -38,6 +38,12 @@ class Posts
           :date => '27/10/2013',
           :permalink => 'tpp-by-example',
           :live => true
+        },
+        {
+          :name => "They see me rollin', they breakin'",
+          :date => "10/02/2014",
+          :permalink => 'they-see-me-rollin-they-breakin',
+          :live => true
         }
       ].inject([]) { |posts, post| posts << Post.new(post) }
     end
