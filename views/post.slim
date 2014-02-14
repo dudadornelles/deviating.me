@@ -6,5 +6,18 @@
   .post
     == slim :render_post, :locals => { :post => @post }
 
+  hr
+  #read_on
+    h4 Read on...
+    ul
+      - @last.each do |last|
+        li
+          a href="/posts/#{last.permalink}"
+            = last.name
+  a href='/'
+    #all_posts
+      | &larr; See all posts. 
+      
+
   == slim :disqus
 

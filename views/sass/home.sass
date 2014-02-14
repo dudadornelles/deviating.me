@@ -1,5 +1,5 @@
-$link_font: #2C3DBF
 $titles: #34495e
+$link_font: #3466AA
 $gray: rgba(0,39,59,.08)
 
 @font-face
@@ -18,6 +18,10 @@ $gray: rgba(0,39,59,.08)
 
 
 html
+  a
+    font-family: "Open Sans Regular"
+    text-decoration: none
+    font-weight: 900
   *
     margin: 0px
     padding: 0px
@@ -125,3 +129,15 @@ hr
       display: inline-block
       margin: 0 5px
 
+#all_posts
+  width: 70%
+  border: solid $gray 1px
+  background-color: $gray
+  text-align: center
+  border-radius: 1px
+  padding: 5px 0
+  margin: 20px auto 10px
+
+#read_on
+  ul
+    margin-left: 8%

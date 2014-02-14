@@ -2,6 +2,11 @@ require 'json'
 
 class Posts
   class << self
+
+    TECH="tech"
+    CONSULTING="consulting"
+    CRAFT="craft"
+
     def all
       posts
     end
@@ -14,6 +19,10 @@ class Posts
       posts.find { |e| e.permalink == permalink }
     end
 
+    def last_and_exclude n, post
+      all.reject{|p| p == post}.reverse[0..n]
+    end
+
     private
     def posts
       @posts ||= init_posts
@@ -21,12 +30,6 @@ class Posts
 
     def init_posts
       [
-        { 
-          :name => 'Building this Blog',
-          :date => '17/03/2013',
-          :permalink => 'building-this-blog',
-          :live => false
-        }, 
         {
           :name => "Five Whys Advanced",
           :date => '1/05/2013',

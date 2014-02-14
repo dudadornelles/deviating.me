@@ -2,8 +2,8 @@ require 'sinatra'
 require 'slim'
 require 'sass'
 
-require File.join(settings.root, "app/posts")
 require File.join(settings.root, "app/post")
+require File.join(settings.root, "app/posts")
 
 ROOT_FOLDER = settings.root
 set :port, 80
@@ -24,6 +24,7 @@ class DeviatingMe < Sinatra::Base
 
   get '/posts/:permalink' do |permalink|
     @post = Posts.find_by_permalink(permalink)
+    @last = Posts.last_and_exclude(2, @post)
     slim :post
   end
 
